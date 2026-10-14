@@ -37,7 +37,7 @@ function Test-WebView2Runtime {
 
 try {
     if (-not (Test-WebView2Runtime)) {
-        throw '未检测到 Microsoft Edge WebView2 Runtime。请先从 https://developer.microsoft.com/microsoft-edge/webview2/ 安装 Evergreen Runtime，然后重新运行“安装.cmd”。'
+        throw '未检测到 Microsoft Edge WebView2 Runtime。请先从 https://developer.microsoft.com/microsoft-edge/webview2/ 安装 Evergreen Runtime，然后重新运行安装向导。'
     }
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     New-Item -ItemType Directory -Force -Path $tempRoot | Out-Null

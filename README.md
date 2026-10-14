@@ -6,9 +6,11 @@
 
 ## 分享给别人
 
-最简单的方法是把本项目 ZIP 发给对方。对方解压后运行 `安装.cmd` 即可一次安装启动动画和 Codex Dream Skin Switcher；安装器会从上游 GitHub Release 下载 Windows x64 程序并核对 SHA-256。也可以把本目录上传到 GitHub，然后把仓库链接发给对方；对方在 GitHub 点 **Code → Download ZIP**，解压后运行 `安装.cmd`。
+最简单的方法是把本项目 ZIP 发给对方。对方解压后双击 `CodexStartupAnimationSetup.exe`，在图形向导中选择完整安装或仅安装动画。完整安装会从上游 GitHub Release 下载 Windows x64 程序并核对 SHA-256。也可以把本目录上传到 GitHub，然后把仓库链接发给对方；对方在 GitHub 点 **Code → Download ZIP**，解压后运行该 `.exe`。`安装.cmd` 和 `仅安装动画.cmd` 仅作为旧入口兼容，会打开同一个图形向导。
 
-完整安装需要 Windows 10/11 x64、微软商店版 Codex、WebView2 和 Node.js 22+。若只想装启动动画、不装换肤器，运行 `仅安装动画.cmd`；仍需 WebView2。
+本向导是社区开源项目，尚未做代码签名。Windows SmartScreen 可能显示“未知发布者”；可先查看仓库中的 `CodexStartupAnimationSetup.cs`、PowerShell 安装脚本和构建脚本。向导会明确展示下载来源和安装日志，不需要管理员权限。
+
+完整安装需要 Windows 10/11 x64、微软商店版 Codex、WebView2 和 Node.js 22+。若只想装启动动画、不装换肤器，在向导中选“仅启动动画”；仍需 WebView2。
 
 如果你要从本机推送到新建的 GitHub 空仓库，在本目录打开 PowerShell，按 GitHub 提供的仓库地址执行：
 
@@ -30,16 +32,20 @@ git push -u origin main
 ## 安装和使用
 
 1. 安装 Node.js 22+，从 GitHub 下载 ZIP 并解压到本机。
-2. 双击 `安装.cmd`。安装器会下载并校验 Dream Skin Switcher，再安装启动动画和快捷方式；全程为当前 Windows 用户操作，不需要管理员权限。
+2. 双击 `CodexStartupAnimationSetup.exe`，选择“动画 + 主题切换器”。向导会下载并校验 Dream Skin Switcher，再安装启动动画和快捷方式；全程为当前 Windows 用户操作，不需要管理员权限。
 3. 打开“Codex 主题切换器”选择并应用主题；以后从“Codex 自定义主题”启动 Codex，动画结束或点击跳过后会进入已换肤的 Codex。
 
-如果只安装启动动画，双击 `仅安装动画.cmd`，然后完全退出 Codex 再重新打开。
+如果只安装启动动画，在向导中选择“仅启动动画”，然后完全退出 Codex 再重新打开。旧入口 `仅安装动画.cmd` 也会打开向导并预选此项。
+
+### 重新构建向导
+
+`CodexStartupAnimationSetup.cs` 是向导源码。Windows 上如需从源码重新生成 EXE，可运行 `powershell -ExecutionPolicy Bypass -File .\Build-Setup.ps1`；它调用系统 .NET Framework x64 编译器，只生成本项目的向导，不会安装项目。脚本执行策略只对这一次进程生效。该 EXE 未签名，重新构建不会自动获得代码签名或消除 SmartScreen 提示。
 
 动画会在 Windows 登录时启动监听器；监听器在检测到新的 Codex 主进程后播放一次。关闭并重新打开 Codex 可以再次播放。动画窗口有 60 秒保护超时。
 
 ## 跟随 Codex 主界面主题（可选）
 
-本项目复用 [Codex Dream Skin Switcher](https://github.com/bilbillm/Codex-Dream-Skin-Switcher) 的主题选择器和主题包格式，不另做一套皮肤管理器。运行 `安装.cmd` 会自动安装上游最新 Windows Release；当前 Release 内置浅色和深色主题，选择并应用即可。也可从 [Codex Angelina Themes](https://github.com/bilbillm/Codex-Angelina-Themes) 导入其他主题。
+本项目复用 [Codex Dream Skin Switcher](https://github.com/bilbillm/Codex-Dream-Skin-Switcher) 的主题选择器和主题包格式，不另做一套皮肤管理器。在安装向导中选“动画 + 主题切换器”会自动安装上游最新 Windows Release；当前 Release 内置浅色和深色主题，选择并应用即可。也可从 [Codex Angelina Themes](https://github.com/bilbillm/Codex-Angelina-Themes) 导入其他主题。
 
 每次播放启动动画时，会读取上游保存的 `%LOCALAPPDATA%\CodexDreamSkin\active-theme\theme.json`，同步主题图片、浅/深/自动外观和强调色（支持上游接受的十六进制、`rgb()`、`hsl()`、`oklch()`、`oklab()` 色值；`auto` 按 Windows/WebView 的系统配色偏好解析）。换肤器成功应用主题后，下一次启动动画会跟随它；Codex 主界面的应用和启动方式仍由换肤器负责。没有安装主题切换器时，启动动画继续使用内置 CODEX 外观。
 

@@ -1,5 +1,8 @@
 @echo off
-chcp 65001 >nul
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0Install.ps1"
-echo.
-pause
+setlocal
+if not exist "%~dp0CodexStartupAnimationSetup.exe" (
+  echo Cannot find CodexStartupAnimationSetup.exe. Please download and extract the complete project ZIP.
+  pause
+  exit /b 1
+)
+start "Codex Startup Animation Setup" "%~dp0CodexStartupAnimationSetup.exe" /animation-only

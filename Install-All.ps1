@@ -1,4 +1,4 @@
-$ErrorActionPreference = 'Stop'
+﻿$ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 $headers = @{ 'User-Agent' = 'CodexStartupAnimation-Installer'; 'Accept' = 'application/vnd.github+json' }
 $tempRoot = Join-Path $env:TEMP ('codex-startup-bundle-' + [guid]::NewGuid().ToString('N'))
@@ -8,14 +8,14 @@ try {
 
     $node = Get-Command 'node.exe' -ErrorAction SilentlyContinue
     if (-not $node) {
-        throw '完整安装需要 Node.js 22 或更新版本。请先从 https://nodejs.org/ 安装，再重新运行“安装.cmd”。若只要启动动画，请运行“仅安装动画.cmd”。'
+        throw '完整安装需要 Node.js 22 或更新版本。请先从 https://nodejs.org/ 安装，再重新运行安装向导。若只要启动动画，请在向导中选择“仅启动动画”。'
     }
     $nodeVersion = (& $node.Source --version 2>$null | Select-Object -First 1)
     if ($nodeVersion -notmatch '^v?(\d+)\.') {
-        throw '无法读取 Node.js 版本。请安装 Node.js 22 或更新版本，再重新运行“安装.cmd”。'
+        throw '无法读取 Node.js 版本。请安装 Node.js 22 或更新版本，再重新运行安装向导。'
     }
     if ([int]$matches[1] -lt 22) {
-        throw "检测到 Node.js $nodeVersion；完整安装需要 Node.js 22 或更新版本。请先升级，再重新运行“安装.cmd”。"
+        throw "检测到 Node.js $nodeVersion；完整安装需要 Node.js 22 或更新版本。请先升级，再重新运行安装向导。"
     }
 
     Write-Host '正在查询 Dream Skin Switcher 最新 Windows Release…'
@@ -70,7 +70,7 @@ try {
     Write-Host ''
     Write-Host '整套安装完成。先打开“Codex 主题切换器”选择并应用主题；以后从“Codex 自定义主题”启动 Codex，即可播放启动动画并进入已选皮肤。' -ForegroundColor Green
     Write-Host "Dream Skin Switcher 安装目录：$switcherDir"
-    Write-Host '若只想安装启动动画，请运行“仅安装动画.cmd”。'
+    Write-Host '若只想安装启动动画，请在向导中选择“仅启动动画”。'
 } catch {
     Write-Host ''
     Write-Host ('安装未完成：' + $_.Exception.Message) -ForegroundColor Red
