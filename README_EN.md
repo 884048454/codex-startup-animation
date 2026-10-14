@@ -6,7 +6,7 @@ This runs as a separate fullscreen animation window when the desktop app starts.
 
 ## Share it
 
-Send someone this project ZIP, or upload the project folder to a GitHub repository and share its link. They can download the repository ZIP, extract it, and double-click `CodexStartupAnimationSetup.exe`. The graphical wizard offers a full setup or animation-only setup. Full setup downloads the upstream Windows x64 release and verifies its SHA-256. `安装.cmd` and `仅安装动画.cmd` remain as compatibility launchers for the same wizard.
+Send someone this project ZIP, or upload the project folder to a GitHub repository and share its link. They can download the repository ZIP, extract it, and double-click `CodexStartupAnimationSetup.exe`. The graphical wizard offers a full setup or animation-only setup. Full setup downloads the upstream Windows x64 release and verifies its SHA-256.
 
 This is an open-source community project and the setup executable is not code-signed. Windows SmartScreen may show an “unknown publisher” warning. Users can inspect `CodexStartupAnimationSetup.cs`, the PowerShell installer scripts, and the build script in this repository. The wizard shows download sources and an installation log and does not require administrator privileges.
 
@@ -35,7 +35,7 @@ git push -u origin main
 2. Double-click `CodexStartupAnimationSetup.exe` and choose “Animation + Theme Switcher”. It downloads and verifies Dream Skin Switcher, then installs the animation and shortcuts for the current Windows user without administrator privileges.
 3. Open “Codex 主题切换器” to select and apply a theme. For future sessions, launch Codex through “Codex 自定义主题”; the animation plays before the themed Codex window appears.
 
-For animation-only setup, choose “Startup animation only” in the wizard, then fully exit and reopen Codex. The legacy `仅安装动画.cmd` launcher opens the wizard with that choice preselected.
+For animation-only setup, choose “Startup animation only” in the wizard, then fully exit and reopen Codex.
 
 ### Rebuild the setup wizard
 

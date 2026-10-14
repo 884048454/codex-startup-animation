@@ -6,7 +6,7 @@
 
 ## 分享给别人
 
-最简单的方法是把本项目 ZIP 发给对方。对方解压后双击 `CodexStartupAnimationSetup.exe`，在图形向导中选择完整安装或仅安装动画。完整安装会从上游 GitHub Release 下载 Windows x64 程序并核对 SHA-256。也可以把本目录上传到 GitHub，然后把仓库链接发给对方；对方在 GitHub 点 **Code → Download ZIP**，解压后运行该 `.exe`。`安装.cmd` 和 `仅安装动画.cmd` 仅作为旧入口兼容，会打开同一个图形向导。
+最简单的方法是把本项目 ZIP 发给对方。对方解压后双击 `CodexStartupAnimationSetup.exe`，在图形向导中选择完整安装或仅安装动画。完整安装会从上游 GitHub Release 下载 Windows x64 程序并核对 SHA-256。也可以把本目录上传到 GitHub，然后把仓库链接发给对方；对方在 GitHub 点 **Code → Download ZIP**，解压后运行该 `.exe`。
 
 本向导是社区开源项目，尚未做代码签名。Windows SmartScreen 可能显示“未知发布者”；可先查看仓库中的 `CodexStartupAnimationSetup.cs`、PowerShell 安装脚本和构建脚本。向导会明确展示下载来源和安装日志，不需要管理员权限。
 
@@ -35,7 +35,7 @@ git push -u origin main
 2. 双击 `CodexStartupAnimationSetup.exe`，选择“动画 + 主题切换器”。向导会下载并校验 Dream Skin Switcher，再安装启动动画和快捷方式；全程为当前 Windows 用户操作，不需要管理员权限。
 3. 打开“Codex 主题切换器”选择并应用主题；以后从“Codex 自定义主题”启动 Codex，动画结束或点击跳过后会进入已换肤的 Codex。
 
-如果只安装启动动画，在向导中选择“仅启动动画”，然后完全退出 Codex 再重新打开。旧入口 `仅安装动画.cmd` 也会打开向导并预选此项。
+如果只安装启动动画，在向导中选择“仅启动动画”，然后完全退出 Codex 再重新打开。
 
 ### 重新构建向导
 
