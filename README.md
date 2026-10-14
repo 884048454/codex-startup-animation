@@ -33,6 +33,16 @@ git push -u origin main
 
 动画会在 Windows 登录时启动监听器；监听器在检测到新的 Codex 主进程后播放一次。关闭并重新打开 Codex 可以再次播放。动画窗口有 60 秒保护超时。
 
+## 跟随 Codex 主界面主题（可选）
+
+本项目复用 [Codex Dream Skin Switcher](https://github.com/bilbillm/Codex-Dream-Skin-Switcher) 的主题选择器和主题包格式，不另做一套皮肤管理器。先按上游说明安装主题切换器并导入主题：[Codex Angelina Themes](https://github.com/bilbillm/Codex-Angelina-Themes) 提供可导入示例。
+
+每次播放启动动画时，会读取上游保存的 `%LOCALAPPDATA%\CodexDreamSkin\active-theme\theme.json`，同步主题图片、浅/深/自动外观和强调色（支持上游接受的十六进制、`rgb()`、`hsl()`、`oklch()`、`oklab()` 色值；`auto` 按 Windows/WebView 的系统配色偏好解析）。换肤器成功应用主题后，下一次启动动画会跟随它；Codex 主界面的应用和启动方式仍由换肤器负责。没有安装主题切换器时，启动动画继续使用内置 CODEX 外观。
+
+目前复用主题包中的首页 `image`、`appearance` 和 `palette.accent` 三项；上游主题布局、任务页图片和 Codex 界面注入仍由换肤器自身处理，不会把网页 CSS 或脚本加载进启动动画。
+
+Dream Skin Switcher 是独立的社区项目，通过本机 CDP 修改 Codex 主界面；它不是 OpenAI 官方功能。本项目只读取当前主题数据，不包含或执行该项目的代码。详情和要求请查看上游仓库。
+
 ## 卸载
 
 在已安装目录运行 `卸载.cmd`，或运行 `%LOCALAPPDATA%\CodexStartupAnimation\Uninstall.ps1`。这会关闭启动监听器并保留安装文件。若要彻底删除，再手动删除 `%LOCALAPPDATA%\CodexStartupAnimation` 文件夹。

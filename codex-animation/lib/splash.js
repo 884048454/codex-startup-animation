@@ -101,7 +101,8 @@
     footer: 'POWERED BY CODEX',
     accent: '#ff7500',
     glitchA: '#ff3b30',
-    glitchB: '#2971b8'
+    glitchB: '#2971b8',
+    skinImage: ''
   }
 
   /* ── 序列脚本：中文主字 + 英文等宽字幕 + 底部日志 ───────────────────────
@@ -197,11 +198,33 @@
         out[k2] = raw[k2]
       }
     }
+    var skin = (window.__DSH_STARTUP_SKIN__ && typeof window.__DSH_STARTUP_SKIN__ === 'object')
+      ? window.__DSH_STARTUP_SKIN__
+      : {}
+    for (var k3 in skin) {
+      if (Object.prototype.hasOwnProperty.call(skin, k3) && skin[k3] !== undefined && skin[k3] !== null) {
+        out[k3] = skin[k3]
+      }
+    }
     out.speed = Math.min(3, Math.max(0.35, Number(out.speed) || 1))
     out.identity = String(out.identity || DEFAULTS.identity).slice(0, 48)
     /* 代号取身份名称里的字母数字；纯中文名字取不到时退回 OPERATOR */
     out.identityId = String(out.identityId || out.identity).toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 12)
     if (!out.identityId) out.identityId = 'OPERATOR'
+    out.theme = String(out.theme || DEFAULTS.theme).toLowerCase()
+    if (out.theme === 'auto') {
+      var prefersDark = false
+      try { prefersDark = !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) } catch (e) {}
+      out.theme = prefersDark ? 'dark' : 'light'
+    } else if (out.theme !== 'light' && out.theme !== 'dark') {
+      out.theme = DEFAULTS.theme
+    }
+    out.accent = String(out.accent || DEFAULTS.accent).trim()
+    if (!/^(?:#[0-9a-f]{3,8}|(?:rgb|hsl|oklch|oklab)\([^;{}]{1,96}\))$/i.test(out.accent)) {
+      out.accent = DEFAULTS.accent
+    }
+    out.skinImage = String(out.skinImage || '')
+    if (out.skinImage.indexOf('https://codex-theme.local/') !== 0) out.skinImage = ''
     return out
   }
 
@@ -312,6 +335,7 @@
   root.style.setProperty('--dsu-accent', C.accent)
   root.style.setProperty('--dsu-glitch-a', C.glitchA)
   root.style.setProperty('--dsu-glitch-b', C.glitchB)
+  root.style.setProperty('--dsu-skin-image', C.skinImage ? 'url("' + C.skinImage + '")' : 'none')
 
   var ui = {}
   var clockTimer = null

@@ -124,10 +124,27 @@
   opacity: 0;
 }
 
+.dsu-plate::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--dsu-skin-image, none);
+  background-position: center;
+  background-size: cover;
+  opacity: 0.13;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
 .dsu-dark .dsu-plate {
   background:
     radial-gradient(120% 90% at 78% 12%, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 55%),
     linear-gradient(168deg, var(--dsu-bg-2) 0%, var(--dsu-bg) 42%, var(--dsu-bg) 100%);
+}
+
+.dsu-dark .dsu-plate::before {
+  opacity: 0.11;
+  mix-blend-mode: screen;
 }
 
 /* 背景里若隐若现的档案面板（参考片右侧极淡的方块群） */

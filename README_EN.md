@@ -33,6 +33,16 @@ git push -u origin main
 
 The watcher starts when the user signs in and plays the animation when it detects a new Codex main process. Restart Codex to see it again. The animation host has a 60-second failsafe timeout.
 
+## Follow a Codex interface theme (optional)
+
+This project reuses the theme selector and package format from [Codex Dream Skin Switcher](https://github.com/bilbillm/Codex-Dream-Skin-Switcher) instead of building a separate skin manager. Install the switcher and import a theme using its instructions; [Codex Angelina Themes](https://github.com/bilbillm/Codex-Angelina-Themes) provides importable examples.
+
+Each time the animation plays, it reads `%LOCALAPPDATA%\CodexDreamSkin\active-theme\theme.json` and follows that theme's image, light/dark/automatic appearance, and accent color (hex, `rgb()`, `hsl()`, `oklch()`, and `oklab()` values accepted by the upstream project; `auto` uses the Windows/WebView system color preference). After the switcher successfully applies a theme, the next startup animation follows it; the switcher remains responsible for applying the theme to Codex itself. Without the switcher, the animation keeps its built-in CODEX appearance.
+
+The bridge currently reuses the theme package's home `image`, `appearance`, and `palette.accent` fields. The upstream theme layout, task-page image, and Codex UI injection remain handled by the switcher; this project does not load theme CSS or scripts into the startup animation.
+
+Dream Skin Switcher is an independent community project that styles the Codex interface through local CDP; it is not an official OpenAI feature. This project reads the active theme data but does not include or execute the switcher's code. See its repository for requirements and details.
+
 ## Uninstall
 
 Run `卸载.cmd` from the installed folder, or run `%LOCALAPPDATA%\CodexStartupAnimation\Uninstall.ps1`. This disables the startup watcher and leaves the installed files in place. Delete `%LOCALAPPDATA%\CodexStartupAnimation` to remove those files too.

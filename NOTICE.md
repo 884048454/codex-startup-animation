@@ -14,6 +14,10 @@ The upstream README identifies narration and sound effects as third-party materi
 
 This project includes Microsoft WebView2 .NET assemblies and their accompanying license and notice files under `webview2/`. The Microsoft Edge WebView2 Evergreen Runtime is a separate prerequisite and is not included.
 
+## Optional Codex theme interoperability
+
+When [Codex Dream Skin Switcher](https://github.com/bilbillm/Codex-Dream-Skin-Switcher) is installed separately, this project reads the selected theme's `theme.json` and local image from its active theme directory. No Dream Skin Switcher source code is bundled here; this is an optional data-format integration. Dream Skin Switcher is an unofficial community project and is not affiliated with OpenAI.
+
 ## Project code
 
 The installer, Windows host, watcher, and original adaptation changes in this repository are offered under the MIT License in `LICENSE`. That license does not grant additional rights to the third-party audio materials or Microsoft binaries.
