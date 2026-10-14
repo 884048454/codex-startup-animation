@@ -6,21 +6,11 @@
 
 ## 分享给别人
 
-最简单的方法是把本项目 ZIP 发给对方。对方解压后双击 `CodexStartupAnimationSetup.exe`，在图形向导中选择完整安装或仅安装动画。完整安装会从上游 GitHub Release 下载 Windows x64 程序并核对 SHA-256。也可以把本目录上传到 GitHub，然后把仓库链接发给对方；对方在 GitHub 点 **Code → Download ZIP**，解压后运行该 `.exe`。
+直接把[项目主页](https://github.com/884048454/codex-startup-animation)发给对方即可。对方在 GitHub 点 **Code → Download ZIP**，解压后双击 `CodexStartupAnimationSetup.exe`，在图形向导中选择完整安装或仅安装动画。完整安装会从上游 GitHub Release 下载 Windows x64 程序并核对 SHA-256。
 
 本向导是社区开源项目，尚未做代码签名。Windows SmartScreen 可能显示“未知发布者”；可先查看仓库中的 `CodexStartupAnimationSetup.cs`、PowerShell 安装脚本和构建脚本。向导会明确展示下载来源和安装日志，不需要管理员权限。
 
 完整安装需要 Windows 10/11 x64、微软商店版 Codex、WebView2 和 Node.js 22+。若只想装启动动画、不装换肤器，在向导中选“仅启动动画”；仍需 WebView2。
-
-如果你要从本机推送到新建的 GitHub 空仓库，在本目录打开 PowerShell，按 GitHub 提供的仓库地址执行：
-
-```powershell
-git init -b main
-git add .
-git commit -m "Initial Codex startup animation"
-git remote add origin https://github.com/你的用户名/你的仓库名.git
-git push -u origin main
-```
 
 ## 安装要求
 

@@ -6,21 +6,11 @@ This runs as a separate fullscreen animation window when the desktop app starts.
 
 ## Share it
 
-Send someone this project ZIP, or upload the project folder to a GitHub repository and share its link. They can download the repository ZIP, extract it, and double-click `CodexStartupAnimationSetup.exe`. The graphical wizard offers a full setup or animation-only setup. Full setup downloads the upstream Windows x64 release and verifies its SHA-256.
+Share the [project page](https://github.com/884048454/codex-startup-animation). They can click **Code → Download ZIP**, extract it, and double-click `CodexStartupAnimationSetup.exe`. The graphical wizard offers a full setup or animation-only setup. Full setup downloads the upstream Windows x64 release and verifies its SHA-256.
 
 This is an open-source community project and the setup executable is not code-signed. Windows SmartScreen may show an “unknown publisher” warning. Users can inspect `CodexStartupAnimationSetup.cs`, the PowerShell installer scripts, and the build script in this repository. The wizard shows download sources and an installation log and does not require administrator privileges.
 
 The combined setup requires Windows 10/11 x64, the Microsoft Store Codex app, WebView2, and Node.js 22+. To install only the startup animation, select “Startup animation only” in the wizard; WebView2 is still required.
-
-To push this folder to a newly created empty GitHub repository, open PowerShell in this folder and use the repository URL from GitHub:
-
-```powershell
-git init -b main
-git add .
-git commit -m "Initial Codex startup animation"
-git remote add origin https://github.com/YOUR-USER/YOUR-REPOSITORY.git
-git push -u origin main
-```
 
 ## Requirements and supported app
 
