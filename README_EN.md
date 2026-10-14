@@ -6,7 +6,9 @@ This runs as a separate fullscreen animation window when the desktop app starts.
 
 ## Share it
 
-Send someone this project ZIP, or upload the project folder to a GitHub repository and share its link. They can download the repository ZIP, extract it, and run `安装.cmd`.
+Send someone this project ZIP, or upload the project folder to a GitHub repository and share its link. They can download the repository ZIP, extract it, and run `安装.cmd` to install both the startup animation and Codex Dream Skin Switcher. The installer downloads the upstream Windows x64 release and verifies its SHA-256.
+
+The combined setup requires Windows 10/11 x64, the Microsoft Store Codex app, WebView2, and Node.js 22+. To install only the startup animation, run `仅安装动画.cmd`; WebView2 is still required.
 
 To push this folder to a newly created empty GitHub repository, open PowerShell in this folder and use the repository URL from GitHub:
 
@@ -27,21 +29,23 @@ git push -u origin main
 
 ## Install
 
-1. Download and extract the project ZIP.
-2. Double-click `安装.cmd`. The scheduled task is registered for the current Windows user; administrator access is not required.
-3. Fully quit Codex and open it again. The animation plays before returning to Codex; use the on-screen skip control if desired.
+1. Install Node.js 22+, then download and extract the project ZIP.
+2. Double-click `安装.cmd`. It downloads and verifies Dream Skin Switcher, then installs the animation and shortcuts for the current Windows user without administrator privileges.
+3. Open “Codex 主题切换器” to select and apply a theme. For future sessions, launch Codex through “Codex 自定义主题”; the animation plays before the themed Codex window appears.
+
+For animation-only setup, double-click `仅安装动画.cmd`, then fully exit and reopen Codex.
 
 The watcher starts when the user signs in and plays the animation when it detects a new Codex main process. Restart Codex to see it again. The animation host has a 60-second failsafe timeout.
 
 ## Follow a Codex interface theme (optional)
 
-This project reuses the theme selector and package format from [Codex Dream Skin Switcher](https://github.com/bilbillm/Codex-Dream-Skin-Switcher) instead of building a separate skin manager. Install the switcher and import a theme using its instructions; [Codex Angelina Themes](https://github.com/bilbillm/Codex-Angelina-Themes) provides importable examples.
+This project reuses the theme selector and package format from [Codex Dream Skin Switcher](https://github.com/bilbillm/Codex-Dream-Skin-Switcher) instead of building a separate skin manager. `安装.cmd` installs the latest upstream Windows release; its current release includes light and dark themes you can select and apply. You can also import additional themes from [Codex Angelina Themes](https://github.com/bilbillm/Codex-Angelina-Themes).
 
 Each time the animation plays, it reads `%LOCALAPPDATA%\CodexDreamSkin\active-theme\theme.json` and follows that theme's image, light/dark/automatic appearance, and accent color (hex, `rgb()`, `hsl()`, `oklch()`, and `oklab()` values accepted by the upstream project; `auto` uses the Windows/WebView system color preference). After the switcher successfully applies a theme, the next startup animation follows it; the switcher remains responsible for applying the theme to Codex itself. Without the switcher, the animation keeps its built-in CODEX appearance.
 
 The bridge currently reuses the theme package's home `image`, `appearance`, and `palette.accent` fields. The upstream theme layout, task-page image, and Codex UI injection remain handled by the switcher; this project does not load theme CSS or scripts into the startup animation.
 
-Dream Skin Switcher is an independent community project that styles the Codex interface through local CDP; it is not an official OpenAI feature. This project reads the active theme data but does not include or execute the switcher's code. See its repository for requirements and details.
+Dream Skin Switcher is an independent community project that styles the Codex interface through local CDP; it is not an official OpenAI feature. This project's combined installer downloads and invokes the upstream release; it does not copy or execute scripts from theme packages. See the upstream repository for requirements and details.
 
 ## Uninstall
 

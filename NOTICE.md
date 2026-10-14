@@ -16,7 +16,7 @@ This project includes Microsoft WebView2 .NET assemblies and their accompanying 
 
 ## Optional Codex theme interoperability
 
-When [Codex Dream Skin Switcher](https://github.com/bilbillm/Codex-Dream-Skin-Switcher) is installed separately, this project reads the selected theme's `theme.json` and local image from its active theme directory. No Dream Skin Switcher source code is bundled here; this is an optional data-format integration. Dream Skin Switcher is an unofficial community project and is not affiliated with OpenAI.
+The combined installer downloads the Windows release of [Codex Dream Skin Switcher](https://github.com/bilbillm/Codex-Dream-Skin-Switcher) from its upstream GitHub Releases and verifies it against the upstream `SHA256SUMS.txt`; it does not bundle or modify the switcher's source code. The startup animation reads the selected theme's `theme.json` and local image from its active theme directory. Dream Skin Switcher is an unofficial community project and is not affiliated with OpenAI.
 
 ## Project code
 
