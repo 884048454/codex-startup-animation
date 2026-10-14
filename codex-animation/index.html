@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Codex Startup</title>
+<link rel="stylesheet" href="/lib/splash.css">
+<style>html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#000}body{font-family:"Microsoft YaHei","Segoe UI",system-ui,sans-serif}</style>
+</head>
+<body>
+<div id="dsh-startup-root" class="dsu-root dsu-boot"></div>
+<script>
+window.__DSH_STARTUP_SCRIPT_URL__='/lib/splash.js';
+window.__DSH_STARTUP__={enabled:true,mode:'always',theme:'light',speed:1,requireInteraction:true,allowSkip:true,sound:true,soundVolume:0.5,voice:true,voiceLang:'both',voiceSource:'asset',voiceRate:0.88,voicePitch:0.85,voiceVolume:0.9,voiceCue:true,sfx:'audio',identity:'CODEX USER',identityId:'CODEX05',accessLevel:'3',brand1:'CODEX',brand2:'SYNTHESIZE INTELLIGENCE',brand3a:'CODEX',brand3b:'05',orgZh:'CODEX',orgEn:'CODEX',orgSub:'CODEX 05',welcomeBox:'CODEX 05',footer:'POWERED BY CODEX',accent:'#ff7500',glitchA:'#ff3b30',glitchB:'#2971b8'};
+document.documentElement.classList.add('dsu-lock');
+window.addEventListener('dsh-startup:done',function(){try{if(window.chrome&&window.chrome.webview)window.chrome.webview.postMessage('complete')}catch(e){}});
+try{if(window.chrome&&window.chrome.webview)window.chrome.webview.postMessage('ready')}catch(e){}
+</script>
+<script defer src="/lib/splash.js"></script>
+</body>
+</html>

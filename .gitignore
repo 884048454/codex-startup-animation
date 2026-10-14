@@ -1,0 +1,14 @@
+# Runtime logs and local WebView2 profile
+host.log
+watcher.log
+webview2/profile/
+
+# Audio files are third-party materials and are downloaded by Install.ps1
+codex-animation/lib/assets/*.mp3
+
+# Windows and editor files
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.user
+*.suo
