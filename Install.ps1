@@ -1,4 +1,4 @@
-$ErrorActionPreference = 'Stop'
+﻿$ErrorActionPreference = 'Stop'
 $taskName = 'CodexStartupAnimation'
 $localRoot = Join-Path $env:LOCALAPPDATA 'CodexStartupAnimation'
 $sourceRoot = $PSScriptRoot
@@ -86,9 +86,7 @@ try {
     Write-Host '旁白和音效是第三方素材；请先阅读 NOTICE.md 中的说明。'
 }
 finally {
-    $tempFull = [IO.Path]::GetFullPath($tempRoot)
-    $tempPrefix = [IO.Path]::GetFullPath($env:TEMP).TrimEnd('\') + '\'
-    if ($tempFull.StartsWith($tempPrefix, [StringComparison]::OrdinalIgnoreCase)) {
-        Remove-Item -LiteralPath $tempFull -Recurse -Force -ErrorAction SilentlyContinue
+    if ($tempRoot -and (Test-Path -LiteralPath $tempRoot)) {
+        Remove-Item -LiteralPath $tempRoot -Recurse -Force -ErrorAction SilentlyContinue
     }
 }

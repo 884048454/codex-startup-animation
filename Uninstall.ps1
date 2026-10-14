@@ -1,4 +1,4 @@
-$ErrorActionPreference = 'SilentlyContinue'
+﻿$ErrorActionPreference = 'SilentlyContinue'
 $taskName = 'CodexStartupAnimation'
 Unregister-ScheduledTask -TaskName $taskName -Confirm:$false
 Get-CimInstance Win32_Process -Filter "name='powershell.exe'" |
